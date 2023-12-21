@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.spotify.user.entity.User;
 import com.spotify.user.repository.UserRepository;
 
+import main.java.com.spotify.user.dto.UserDTO;
+
 @Service
 public class UserService {
 
@@ -60,5 +62,13 @@ public class UserService {
             currentUser.setUsername(user.get("email").toString());
         }
         return userRepository.save(currentUser);
+    }
+
+    public UserDTO getUserDTOById(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(RuntimeException::new);
+        if (user != null) {
+            return new UserDTO(user.getUsername(), user.getEmail());
+        }
+        return null;
     }
 }

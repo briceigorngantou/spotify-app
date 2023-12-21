@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spotify.user.entity.User;
 import com.spotify.user.service.UserService;
 
+import main.java.com.spotify.user.dto.UserDTO;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
 @RequestMapping("/api/users")
@@ -71,6 +74,12 @@ public class UserController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public User getById(@PathVariable Long id) throws Exception {
         return userService.getById(id);
+    }
+
+    @GetMapping("/dto/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody UserDTO getUserDTO(@PathVariable Long userId) {
+        return userService.getUserDTOById(userId);
     }
 
 }

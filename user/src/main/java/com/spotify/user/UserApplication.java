@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserApplication {
 
 	@RequestMapping("/")
-	public String home(){
+	public String home() {
 		return "Home Page";
 	}
 
@@ -18,4 +18,8 @@ public class UserApplication {
 		SpringApplication.run(UserApplication.class, args);
 	}
 
+	// @Bean
+	// public WebClient webclient() {
+	// 	return webclient.builder().build();
+	// }
 }
